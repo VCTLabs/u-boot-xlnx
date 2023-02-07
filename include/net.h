@@ -355,6 +355,7 @@ struct vlan_ethernet_hdr {
 /* VLAN Ethernet header size */
 #define VLAN_ETHER_HDR_SIZE	(sizeof(struct vlan_ethernet_hdr))
 
+#define PROT_SWU	0xB990		/* swupdate ethernet trigger pkt */
 #define PROT_IP		0x0800		/* IP protocol			*/
 #define PROT_ARP	0x0806		/* IP ARP protocol		*/
 #define PROT_WOL	0x0842		/* ether-wake WoL protocol	*/
@@ -561,7 +562,7 @@ extern int		net_restart_wrap;	/* Tried all network devices */
 
 enum proto_t {
 	BOOTP, RARP, ARP, TFTPGET, DHCP, PING, PING6, DNS, NFS, CDP, NETCONS,
-	SNTP, TFTPSRV, TFTPPUT, LINKLOCAL, FASTBOOT, WOL, UDP, NCSI, WGET
+	SNTP, SWU, TFTPSRV, TFTPPUT, LINKLOCAL, FASTBOOT, WOL, UDP, NCSI, WGET
 };
 
 extern char	net_boot_file_name[1024];/* Boot File name */
