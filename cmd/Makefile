@@ -111,6 +111,7 @@ obj-$(CONFIG_CMD_PCI) += pci.o
 endif
 obj-$(CONFIG_CMD_PINMUX) += pinmux.o
 obj-$(CONFIG_CMD_PXE) += pxe.o pxe_utils.o
+obj-$(CONFIG_CMD_SWU) += swu.o
 obj-$(CONFIG_CMD_WOL) += wol.o
 obj-$(CONFIG_CMD_QFW) += qfw.o
 obj-$(CONFIG_CMD_READ) += read.o
