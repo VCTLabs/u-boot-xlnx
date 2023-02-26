@@ -79,6 +79,12 @@
  *	We want:	- network time
  *	Next step:	none
  *
+ * SWU:
+ *
+ *	Prerequisites:	- own ethernet address
+ *	We want:	- trigger packet or timeout
+ *	Next step:	none
+ *
  * WOL:
  *
  *	Prerequisites:	- own ethernet address
@@ -117,6 +123,9 @@
 #include "rarp.h"
 #if defined(CONFIG_CMD_SNTP)
 #include "sntp.h"
+#endif
+#if defined(CONFIG_CMD_SWU)
+#include "swu.h"
 #endif
 #if defined(CONFIG_CMD_WOL)
 #include "wol.h"
@@ -524,6 +533,11 @@ restart:
 #if defined(CONFIG_CMD_LINK_LOCAL)
 		case LINKLOCAL:
 			link_local_start();
+			break;
+#endif
+#if defined(CONFIG_CMD_SWU)
+		case SWU:
+			swu_start();
 			break;
 #endif
 #if defined(CONFIG_CMD_WOL)
@@ -1132,6 +1146,13 @@ void net_process_received_packet(uchar *in_packet, int len)
 		ip = (struct ip_udp_hdr *)(in_packet + E802_HDR_SIZE);
 		len -= E802_HDR_SIZE;
 
+#if defined(CONFIG_CMD_SWU)
+	} else if (eth_proto == PROT_SWU) {	/* swupdate packet */
+		printf("Got SWU trigger packet %x\n", eth_proto);
+		env_set("do_rescue", "1");
+		net_set_state(NETLOOP_SUCCESS);
+		return;
+#endif
 	} else if (eth_proto != PROT_VLAN) {	/* normal packet */
 		ip = (struct ip_udp_hdr *)(in_packet + ETHER_HDR_SIZE);
 		len -= ETHER_HDR_SIZE;

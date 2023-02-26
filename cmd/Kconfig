@@ -1532,6 +1532,11 @@ config CMD_PXE
 	help
 	  Boot image via network using PXE protocol
 
+config CMD_SWU
+	bool "swu"
+	help
+	  Wait for swupdate trigger packet
+
 config CMD_WOL
 	bool "wol"
 	help

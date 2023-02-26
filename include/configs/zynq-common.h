@@ -200,13 +200,13 @@
 #define CONFIG_EXTRA_ENV_SETTINGS	\
 	"fdt_high=0x20000000\0"		\
 	"initrd_high=0x20000000\0"	\
-	"scriptaddr=0x20000\0"	\
 	"script_size_f=0x40000\0"	\
 	"fdt_addr_r=0x1f00000\0"        \
 	"pxefile_addr_r=0x2000000\0"    \
 	"kernel_addr_r=0x2000000\0"     \
 	"scriptaddr=0x3000000\0"        \
 	"ramdisk_addr_r=0x3100000\0"    \
+	"do_rescue=0\0" \
 	DFU_ALT_INFO \
 	BOOTENV
 #endif
